@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: backend
+          ports:
+            - containerPort: 5555
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: PORT
+            - name: CLIENT_ORIGIN
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: CLIENT_ORIGIN
+          volumeMounts:
+            - name: mongo-secret-volume
+              mountPath: /etc/secrets
+              readOnly: true
+      volumes:
+        - name: mongo-secret-volume
+          secret:
+            secretName: backend-secret
