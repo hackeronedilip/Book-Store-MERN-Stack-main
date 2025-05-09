@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: backend
+          image: dilipopseng/bookstorebackend
           ports:
             - containerPort: 5555
           env:
