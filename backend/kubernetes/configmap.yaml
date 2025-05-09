@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: backend-config
 data:
-  PORT: "5555"
+  PORT: "4585"
   CLIENT_ORIGIN: "http://localhost:3000"
