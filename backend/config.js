@@ -1,7 +1,8 @@
-export const PORT = 5555;
+import dotenv from 'dotenv';
+dotenv.config();  // This will load the .env variables
 
-export const mongoDBURL =
-  'mongodb+srv://root:root@books-store-mern.c7ba8z1.mongodb.net/books-collection?retryWrites=true&w=majority';
 
-// Please create a free database for yourself.
-// This database will be deleted after tutorial
+
+export const PORT = process.env.PORT || 5000;
+export const mongoDBURL = process.env.MONGO_URL;  // Use this variable
+export const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || '*';
